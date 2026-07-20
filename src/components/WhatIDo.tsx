@@ -1,175 +1,81 @@
-import { useEffect, useRef } from "react";
 import "./styles/WhatIDo.css";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const services = [
+  {
+    number: "01",
+    title: "Data Analytics",
+    subtitle: "Insights From Data",
+    description:
+      "Cleaning, transforming and analyzing datasets to discover trends, track KPIs and communicate insights through interactive dashboards and reports.",
+    tags: ["Python", "Pandas", "NumPy", "SQL", "Power BI", "Excel", "Tableau", "Matplotlib", "Seaborn"],
+    emoji: "📊",
+  },
+  {
+    number: "02",
+    title: "Machine Learning",
+    subtitle: "Predictive Modeling",
+    description:
+      "Designing end-to-end ML pipelines for classification, regression and clustering. From raw feature engineering to deployment-ready inference pipelines.",
+    tags: ["Scikit-learn", "Feature Engg", "EDA", "Classification", "Regression", "Clustering"],
+    emoji: "🤖",
+  },
+  {
+    number: "03",
+    title: "NLP & Deep Learning",
+    subtitle: "Neural Networks & Text AI",
+    description:
+      "Building NLP pipelines with TF-IDF, NLTK and Transformers; training deep neural networks with TensorFlow/Keras for sequence and tabular problems.",
+    tags: ["TensorFlow", "Keras", "NLP", "NLTK", "TF-IDF", "Transformers", "Deep Learning"],
+    emoji: "🧠",
+  },
+  {
+    number: "04",
+    title: "Generative AI",
+    subtitle: "LLMs, RAG & Agentic AI",
+    description:
+      "Building production Generative AI systems using LLMs, RAG pipelines, prompt engineering and multi-agent architectures with LangChain and LangGraph.",
+    tags: ["LLMs", "RAG", "LangChain", "LangGraph", "Prompt Engg", "Ollama", "FAISS"],
+    emoji: "✨",
+  },
+];
 
 const WhatIDo = () => {
-  const containerRef = useRef<(HTMLDivElement | null)[]>([]);
-  const setRef = (el: HTMLDivElement | null, index: number) => {
-    containerRef.current[index] = el;
-  };
-  useEffect(() => {
-    if (ScrollTrigger.isTouch) {
-      containerRef.current.forEach((container) => {
-        if (container) {
-          container.classList.remove("what-noTouch");
-          container.addEventListener("click", () => handleClick(container));
-        }
-      });
-    }
-    return () => {
-      containerRef.current.forEach((container) => {
-        if (container) {
-          container.removeEventListener("click", () => handleClick(container));
-        }
-      });
-    };
-  }, []);
   return (
-    <div className="whatIDO">
-      <div className="what-box">
-        <h2 className="title">
-          W<span className="hat-h2">HAT</span>
-          <div>
-            I<span className="do-h2"> DO</span>
-          </div>
-        </h2>
-      </div>
-      <div className="what-box">
-        <div className="what-box-in">
-          <div className="what-border2">
-            <svg width="100%">
-              <line
-                x1="0"
-                y1="0"
-                x2="0"
-                y2="100%"
-                stroke="white"
-                strokeWidth="2"
-                strokeDasharray="7,7"
-              />
-              <line
-                x1="100%"
-                y1="0"
-                x2="100%"
-                y2="100%"
-                stroke="white"
-                strokeWidth="2"
-                strokeDasharray="7,7"
-              />
-            </svg>
-          </div>
-          <div
-            className="what-content what-noTouch"
-            ref={(el) => setRef(el, 0)}
-          >
-            <div className="what-border1">
-              <svg height="100%">
-                <line
-                  x1="0"
-                  y1="0"
-                  x2="100%"
-                  y2="0"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeDasharray="6,6"
-                />
-                <line
-                  x1="0"
-                  y1="100%"
-                  x2="100%"
-                  y2="100%"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeDasharray="6,6"
-                />
-              </svg>
-            </div>
-            <div className="what-corner"></div>
+    <section className="whatido-section" id="whatido">
+      <div className="whatido-inner section-container">
+        <div className="whatido-header">
+          <span className="section-label">What I Do</span>
+          <h2 className="whatido-title title">
+            Services &<br />
+            <span className="display-font whatido-title-italic">Expertise</span>
+          </h2>
+          <div className="section-divider"></div>
+          <p className="whatido-subtitle">
+            End-to-end data intelligence — from raw numbers to AI-powered decisions.
+          </p>
+        </div>
 
-            <div className="what-content-in">
-              <h3>DATA ANALYTICS</h3>
-              <h4>Insights From Data</h4>
-              <p>
-                Cleaning, transforming and analyzing datasets to discover trends,
-                track KPIs and communicate insights through dashboards and reports.
-              </p>
-              <h5>Skillset & tools</h5>
-              <div className="what-content-flex">
-                <div className="what-tags">Python</div>
-                <div className="what-tags">Pandas</div>
-                <div className="what-tags">NumPy</div>
-                <div className="what-tags">SQL</div>
-                <div className="what-tags">Power BI</div>
-                <div className="what-tags">Excel</div>
-                <div className="what-tags">Tableau</div>
-                <div className="what-tags">Matplotlib</div>
-                <div className="what-tags">Seaborn</div>
+        <div className="whatido-grid">
+          {services.map((service) => (
+            <div className="service-card" key={service.number}>
+              <div className="service-card-top">
+                <span className="service-number">{service.number}</span>
+                <span className="service-emoji">{service.emoji}</span>
               </div>
-              <div className="what-arrow"></div>
-            </div>
-          </div>
-          <div
-            className="what-content what-noTouch"
-            ref={(el) => setRef(el, 1)}
-          >
-            <div className="what-border1">
-              <svg height="100%">
-                <line
-                  x1="0"
-                  y1="100%"
-                  x2="100%"
-                  y2="100%"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeDasharray="6,6"
-                />
-              </svg>
-            </div>
-            <div className="what-corner"></div>
-            <div className="what-content-in">
-              <h3>Data Science, ML, NLP & DL</h3>
-              <h4>Predictive Modeling & Neural Networks</h4>
-              <p>
-                Designing data science workflows and ML/NLP pipelines for
-                classification, regression, clustering and text processing,
-                including deep learning with neural networks for sequence and
-                tabular problems.
-              </p>
-              <h5>Skillset & tools</h5>
-              <div className="what-content-flex">
-                <div className="what-tags">Scikit‑learn</div>
-                <div className="what-tags">TensorFlow</div>
-                <div className="what-tags">Keras</div>
-                <div className="what-tags">NLP</div>
-                <div className="what-tags">NLTK</div>
-                <div className="what-tags">Neural Network</div>
-                <div className="what-tags">Deep Learning</div>
-                <div className="what-tags">TF‑IDF</div>
-                <div className="what-tags">Feature Engg</div>
-                <div className="what-tags">Plotly</div>
+              <h3 className="service-title">{service.title}</h3>
+              <p className="service-subtitle">{service.subtitle}</p>
+              <p className="service-desc">{service.description}</p>
+              <div className="service-tags">
+                {service.tags.map((tag) => (
+                  <span className="service-tag" key={tag}>{tag}</span>
+                ))}
               </div>
-              <div className="what-arrow"></div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
 export default WhatIDo;
-
-function handleClick(container: HTMLDivElement) {
-  container.classList.toggle("what-content-active");
-  container.classList.remove("what-sibling");
-  if (container.parentElement) {
-    const siblings = Array.from(container.parentElement.children);
-
-    siblings.forEach((sibling) => {
-      if (sibling !== container) {
-        sibling.classList.remove("what-content-active");
-        sibling.classList.toggle("what-sibling");
-      }
-    });
-  }
-}
